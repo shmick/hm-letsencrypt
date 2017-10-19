@@ -62,7 +62,7 @@ Since you probably don't want to wait up to an hour for your certificate to be g
 sleep 1m ; /mnt/mmcblk0p4/letsencrypt.sh myawesomebbq.duckdns.org
 ```
 
-Go ahead and reboot your HeaterMeter once more.
+Go ahead and reboot your HeaterMeter once more. Once your HeaterMeter has rebooted, you can remove this entry from the **Local Startup** section.
 
 ### Testing
 
