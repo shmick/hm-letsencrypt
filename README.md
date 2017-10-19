@@ -1,6 +1,6 @@
 # hm-letsencrypt
 
-Give your internet facing HeaterMeter a **free** HTTPS certificate via [Let's Encrypt](https://letsencrypt.org/)
+Give your internet facing [HeaterMeter](https://github.com/CapnBry/HeaterMeter/wiki) a **free** HTTPS certificate via [Let's Encrypt](https://letsencrypt.org/)
 
 ## Getting Started
 
