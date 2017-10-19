@@ -16,8 +16,9 @@ These instructions should get you up and running. If you run into any trouble, p
 #### Phase 1 - Installing the letsencrypt.sh script
 
 * This will download the letsencrypt.sh to /mnt/mmcblk0p4/letsencrypt.sh
+* This script runs on every reboot, but only downloads the ```letsencrypt.sh``` script if it's not already installed.
 
-In the HM web interface, go to **System** > **Startup** and edit the **Local Startup** entry.
+In the HeaterMeter web interface, go to **System** > **Startup** and edit the **Local Startup** entry.
 
 Add this line before ```exit 0```
 ```
@@ -35,29 +36,17 @@ exit 0
 
 Click on **Submit** to save the changes.
 
-Click ont the **Reboot** tab and then click on **Perform reboot** to reboot your HeaterMeter
+Click on the **Reboot** tab and then click on **Perform reboot** to reboot your HeaterMeter
 
-**Note:** This script runs on every reboot, but only downloads the ```letsencrypt.sh``` script if it's not already installed.
 
 #### Phase 2 - Generating and renewing a certificate
 
 * We're going to assume your Dynamic DNS name is **myawesomebbq.duckdns.org**
 
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+In the HeaterMeter web interface, go to **System** > **Scheduled Tasks** and add the following:
 
 ```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+0 * * * * /mnt/mmcblk0p4/letsencrypt.sh myawesomebbq.duckdns.org
 ```
 
 ## Acknowledgments
