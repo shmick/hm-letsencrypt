@@ -49,6 +49,12 @@ In the HeaterMeter web interface, go to **System** > **Scheduled Tasks** and add
 0 * * * * /mnt/mmcblk0p4/letsencrypt.sh myawesomebbq.duckdns.org
 ```
 
+This will attempt to create or renew your certificate every hour.
+
+**Note:** The certificate is valid for 90 days and will only attempt to renew once there's less than 30 days remaining.
+
+
+
 ## Acknowledgments
 
 * Neilpang's [acme.sh](https://github.com/Neilpang/acme.sh) script
