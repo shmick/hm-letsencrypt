@@ -8,6 +8,7 @@ These instructions should get you up and running. If you run into any trouble, p
 
 ### Prerequisites
 
+* You must be running [HeaterMeter Stable Firmware Release v14](https://tvwbb.com/showthread.php?72170-Stable-Firmware-Release-v14)
 * Your router must be forwarding port 443 to port 443 on your HeaterMeter
 * You need a Dynamic DNS name
 
