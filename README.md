@@ -39,9 +39,9 @@ Click on **Submit** to save the changes.
 Click on the **Reboot** tab and then click on **Perform reboot** to reboot your HeaterMeter
 
 
-#### Phase 2 - Generating and renewing a certificate
+#### Phase 2 - Generating and/or renewing a certificate
 
-* We're going to assume your Dynamic DNS name is **myawesomebbq.duckdns.org**
+* We're going to assume your Dynamic DNS name is **myawesomebbq.duckdns.org** please use whatever your actual Dynamic DNS name is in the entry below
 
 In the HeaterMeter web interface, go to **System** > **Scheduled Tasks** and add the following:
 
@@ -49,11 +49,17 @@ In the HeaterMeter web interface, go to **System** > **Scheduled Tasks** and add
 0 * * * * /mnt/mmcblk0p4/letsencrypt.sh myawesomebbq.duckdns.org
 ```
 
+Click on **Submit** to save your changes.
+
 This will attempt to create or renew your certificate every hour.
 
 **Note:** The certificate is valid for 90 days and will only attempt to renew once there's less than 30 days remaining.
 
+Since you probably don't want to wait up to an hour for your certificate to be generated, you can add this line to the **Local Startup** in **Phase 1**
 
+```
+sleep 1m ; /mnt/mmcblk0p4/letsencrypt.sh myawesomebbq.duckdns.org
+```
 
 ## Acknowledgments
 
