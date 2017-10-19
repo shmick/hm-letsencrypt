@@ -8,6 +8,6 @@ SCRIPT=letsencrypt.sh
 
 if [ ! -f $DIR/$SCRIPT  ]
 then 
-curl -o $DIR/SCRIPT https://raw.githubusercontent.com/shmick/hm-letsencrypt/master/$SCRIPT
+curl -so $DIR/$SCRIPT https://raw.githubusercontent.com/shmick/hm-letsencrypt/master/$SCRIPT
 chmod +x $DIR/$SCRIPT
 fi
