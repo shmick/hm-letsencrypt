@@ -55,11 +55,17 @@ This will attempt to create or renew your certificate every hour.
 
 **Note:** The certificate is valid for 90 days and will only attempt to renew once there's less than 30 days remaining.
 
-Since you probably don't want to wait up to an hour for your certificate to be generated, you can add this line to the **Local Startup** in **Phase 1**
+Since you probably don't want to wait up to an hour for your certificate to be generated, you can add this line to the **Local Startup** entry in **Phase 1**. Make sure to add it **before** ```exit 0```
 
 ```
 sleep 1m ; /mnt/mmcblk0p4/letsencrypt.sh myawesomebbq.duckdns.org
 ```
+
+Go ahead and reboot your HeaterMeter once more.
+
+### Testing
+
+You should now be able to go to https://(whatever your Dynamic DNS name is) and you should see your HeaterMeter and your browser should show that the site is secure.
 
 ## Acknowledgments
 
