@@ -1,5 +1,5 @@
 #!/bin/sh
-
+set -x
 # sleep for 10 seconds to wait for the network to fully start
 sleep 10
 
