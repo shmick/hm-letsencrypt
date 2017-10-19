@@ -10,7 +10,7 @@ These instructions should get you up and running. If you run into any trouble, p
 
 * You must be running [HeaterMeter Stable Firmware Release v14](https://tvwbb.com/showthread.php?72170-Stable-Firmware-Release-v14)
 * Your router must be forwarding port 443 to port 443 on your HeaterMeter
-* You need a Dynamic DNS name
+* You need a Dynamic DNS name ie: [Duck DNS](https://www.duckdns.org/), [Free DNS](https://freedns.afraid.org/), [No-IP](https://www.noip.com/)
 
 ### Installing
 
