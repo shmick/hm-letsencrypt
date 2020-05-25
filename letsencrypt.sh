@@ -27,7 +27,7 @@ MODE="--issue"
 fi
 
 # Issue or renew the cert
-$ACMEBIN --tls "$MODE" \
+$ACMEBIN --alpn "$MODE" \
 --key-file /etc/uhttpd.key \
 --fullchain-file /etc/uhttpd.crt \
 --pre-hook "/etc/init.d/uhttpd stop" \
