@@ -77,4 +77,4 @@ You should now be able to go to https://(whatever your Dynamic DNS name is) and 
 
 ## Acknowledgments
 
-* Neilpang's [acme.sh](https://github.com/Neilpang/acme.sh) script
+* Neilpang's [acme.sh](https://github.com/acmesh-official/acme.sh) script
