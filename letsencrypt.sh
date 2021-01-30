@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VER="2021-01-30-r00"
+VER="2021-01-30-r01"
 
 HOST="$1"
 FORCEOPT="$2"
@@ -10,7 +10,7 @@ ACMEURL="https://raw.githubusercontent.com/acmesh-official/acme.sh/master/acme.s
 KEYFILE="/root/.acme.sh/$HOST/$HOST.key"
 UHTTPD="/etc/init.d/uhttpd"
 
-if [ $1 == "stop_uhttpd" ]; then
+if [ "$1" == "stop_uhttpd" ]; then
   for i in $(pgrep uhttpd); do kill $i; done
   exit 0
 fi
