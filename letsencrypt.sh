@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VER="2021-01-30-r01"
+VER="2021-01-30-r02"
 
 HOST="$1"
 FORCEOPT="$2"
@@ -9,6 +9,8 @@ ACMEBIN="$ACMEDIR/acme.sh"
 ACMEURL="https://raw.githubusercontent.com/acmesh-official/acme.sh/master/acme.sh"
 KEYFILE="/root/.acme.sh/$HOST/$HOST.key"
 UHTTPD="/etc/init.d/uhttpd"
+UHTTPD_CRT=$(uci get uhttpd.main.cert)
+UHTTPD_KEY=$(uci get uhttpd.main.key)
 
 if [ "$1" == "stop_uhttpd" ]; then
   for i in $(pgrep uhttpd); do kill $i; done
@@ -42,8 +44,8 @@ fi
 
 # Issue or renew the cert
 $ACMEBIN --alpn "$MODE" \
-  --key-file /etc/uhttpd.key \
-  --fullchain-file /etc/uhttpd.crt \
+  --key-file "$UHTTPD_KEY" \
+  --fullchain-file "$UHTTPD_CRT" \
   --pre-hook "$0 stop_uhttpd" \
   -d "$HOST" $FORCEOPT
 
