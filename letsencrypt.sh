@@ -1,5 +1,7 @@
 #!/bin/sh
 
+VER="2021-01-30-r00"
+
 HOST="$1"
 FORCEOPT="$2"
 ACMEDIR="/opt/acme"
