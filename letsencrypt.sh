@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VER="2021-01-30-r02"
+VER="2021-01-30-r03"
 
 HOST="$1"
 FORCEOPT="$2"
@@ -13,7 +13,13 @@ UHTTPD_CRT=$(uci get uhttpd.main.cert)
 UHTTPD_KEY=$(uci get uhttpd.main.key)
 
 if [ "$1" == "stop_uhttpd" ]; then
-  for i in $(pgrep uhttpd); do kill $i; done
+  # Try regular way
+  $UHTTPD stop
+  alive=$(pgrep uhttpd)
+  # If it didn't stop cleanly, kill the uhttpd PID
+  if [ "$?" == "0" ]; then
+    for i in $(pgrep uhttpd); do kill $i; done
+  fi
   exit 0
 fi
 
