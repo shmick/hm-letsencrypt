@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VER="2021-01-30-r03"
+VER="2021-01-31-r01"
 
 HOST="$1"
 FORCEOPT="$2"
@@ -11,17 +11,6 @@ KEYFILE="/root/.acme.sh/$HOST/$HOST.key"
 UHTTPD="/etc/init.d/uhttpd"
 UHTTPD_CRT=$(uci get uhttpd.main.cert)
 UHTTPD_KEY=$(uci get uhttpd.main.key)
-
-if [ "$1" == "stop_uhttpd" ]; then
-  # Try regular way
-  $UHTTPD stop
-  alive=$(pgrep uhttpd)
-  # If it didn't stop cleanly, kill the uhttpd PID
-  if [ "$?" == "0" ]; then
-    for i in $(pgrep uhttpd); do kill $i; done
-  fi
-  exit 0
-fi
 
 if [ -z "$HOST" ]; then
   echo "Usage: $0 mybbq.example.com"
@@ -48,15 +37,19 @@ else
   MODE="--issue"
 fi
 
+# Allows the openssl listener to start on port 443 to vaalidate the cert
+echo "[$(date)] Removing HTTPS listener from uhttpd"
+uci -q delete uhttpd.main.listen_https
+$UHTTPD reload
+
 # Issue or renew the cert
 $ACMEBIN --alpn "$MODE" \
   --key-file "$UHTTPD_KEY" \
   --fullchain-file "$UHTTPD_CRT" \
-  --pre-hook "$0 stop_uhttpd" \
   -d "$HOST" $FORCEOPT
 
-CMD=$(pgrep uhttpd)
-STATUS="$?"
-if [ "$STATUS" != "0" ]; then
-  $UHTTPD start
-fi
+# Add the HTTPS listener back to uttpd
+echo "[$(date)] Adding HTTPS listener to uhttpd"
+uci add_list uhttpd.main.listen_https="0.0.0.0:443"
+uci add_list uhttpd.main.listen_https="[::]:443"
+$UHTTPD reload
