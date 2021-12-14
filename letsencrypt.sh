@@ -42,6 +42,9 @@ echo "[$(date)] Removing HTTPS listener from uhttpd"
 uci -q delete uhttpd.main.listen_https
 $UHTTPD reload
 
+# acme.sh defaults to zerossl now. This makes sure it uses letsencrypt
+$ACMEBIN --set-default-ca --server letsencrypt
+
 # Issue or renew the cert
 $ACMEBIN --alpn "$MODE" \
   --key-file "$UHTTPD_KEY" \
